@@ -43,6 +43,7 @@ Follow the instructions 1:1 as User with Admin privileges
     
 ## Custom Terminal
 1. Install the Terminal emulator [iTerm2](https://www.iterm2.com/)
+
     ```bash
     brew cask install iterm2
     ```
