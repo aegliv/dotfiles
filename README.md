@@ -65,3 +65,19 @@ Follow the instructions 1:1 as User with Admin privileges
     echo $ZSH_VERSION #>5.0.8
     ```
 
+### Load Custom Dotfiles
+1. Make sure you have the right ruby environment
+    ```bash
+    eval "$(rbenv init -)"
+    ```
+
+2. Clone doftiles from Github
+    ```bash
+    homesick clone aegliv/dotfiles
+    ```
+
+3. Symlink them to your user home
+    ```bash
+    homesick symlink dotfiles
+    ```
+4. Restart Terminal
