@@ -26,7 +26,12 @@ Follow the instructions 1:1 as User with Admin privileges
     brew install caskroom/cask/brew-cask
     ```
 
-5. Install Ruby (dependency for 6.)
+5. Install [caskroom-fonts] (https://github.com/caskroom/homebrew-fonts) to install fonts:
+    ```bash
+    brew tap caskroom/fonts 
+    ```
+
+6. Install Ruby (dependency for 6.)
     ```bash
     brew install rbenv ruby-build
     # search for latest version and install it
@@ -36,7 +41,7 @@ Follow the instructions 1:1 as User with Admin privileges
     rbenv global 2.2.3
     ```
     
-6. Install [Homesick](https://github.com/technicalpickles/homesick) to manage our dotfiles
+7. Install [Homesick](https://github.com/technicalpickles/homesick) to manage our dotfiles
     ```bash
     gem install homesick
     ```
@@ -47,6 +52,14 @@ Follow the instructions 1:1 as User with Admin privileges
     ```bash
     brew cask install iterm2
     ```
+    
+2. Install a nice Mono font, e.g.  [Droid Sans Mono](https://www.google.com/fonts/specimen/Droid+Sans+Mono)
+
+    ```bash
+    brew cask install font-droid-sans-mono
+    ```
+
+3. Open iTerm2 and enable your custom font in ``iTerm -> Preferences -> Profiles -> Text``
     
 ## Custom Shell
 1. Install [Zsh Shell](http://www.zsh.org)
@@ -80,4 +93,10 @@ Follow the instructions 1:1 as User with Admin privileges
     ```bash
     homesick symlink dotfiles
     ```
-4. Restart Terminal
+
+4. Ensure our 'plugin manager' is executable
+    ```bash
+    #chmod +x ~/.shy/shy
+    ```
+
+5. Restart Terminal

@@ -1,0 +1,24 @@
+# ----------------------------------------------------------------------------
+# BASE16
+# Carefully chosen color scheme
+# https://github.com/chriskempson/base16
+# ----------------------------------------------------------------------------
+
+source ~/.base16-shell/base16-default.dark.sh
+
+# Tell ls to be colourful
+export CLICOLOR=1
+
+# Do we need Linux or BSD Style?
+if ls --color -d . &>/dev/null 2>&1
+then
+    # Linux Style
+    alias ls='ls --color=tty'
+else
+    # BSD Style
+    export LSCOLORS="Exfxcxdxbxegedabagacad"
+fi
+
+export TERM=xterm-256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+

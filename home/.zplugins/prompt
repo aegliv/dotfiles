@@ -1,0 +1,11 @@
+# ----------------------------------------------------------------------------
+# PROMPT
+# Custom prompt based on 'pure'
+# see:  https://github.com/sindresorhus/pure
+# ----------------------------------------------------------------------------
+
+# make prompt path known to zsh
+fpath=( "$HOME/.zfunctions" ${fpath[@]} )
+
+# load prompt defined in path
+autoload -U pure_prompt && pure_prompt
