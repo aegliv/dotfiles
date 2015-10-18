@@ -1,7 +1,7 @@
 #!/bin/bash
 # ----------------------------------------------------------------------------
 # Nice Welcome Banner (motd)
-# https://github.com/obihann/archey-osx
+# Based on https://github.com/obihann/archey-osx
 # ----------------------------------------------------------------------------
 
 
@@ -49,12 +49,10 @@ done
 # System Variables
 user=$(whoami)
 hostname=$(hostname | sed 's/.local//g')
+pwd=$(pwd)
 ip=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
-distro="OS X $(sw_vers -productVersion)"
-kernel=$(uname)
+distro="$(sw_vers -productVersion) ($(sw_vers -buildVersion))"
 uptime=$(uptime | sed 's/.*up \([^,]*\), .*/\1/')
-shell="$SHELL"
-terminal="$TERM ${TERM_PROGRAM//_/ }"
 cpu=$(sysctl -n machdep.cpu.brand_string)
 battery=$(ioreg -l | grep -i capacity | tr '\n' ' | ' | awk '{printf("%.2f%%", $10/$5 * 100)}')
 
@@ -80,27 +78,12 @@ then
   normal=$(tput    sgr0 2>/dev/null)
 fi
 
-case "${packager}" in
-  homebrew)
-    packagehandler=$(brew list -1 | wc -l | awk '{print $1 }')
-    ;;
-  macports)
-    packagehandler=$(port installed | wc -l | awk '{print $1 }')
-    ;;
-  *)
-    packagehandler=0
-    ;;
-esac
 
-userText="${textColor}User:${normal} ${user}${normal}"
-hostnameText="${textColor}Hostname:${normal} ${hostname}${normal}"
-distroText="${textColor}Distro:${normal} ${distro}${normal}"
-kernelText="${textColor}Kernel:${normal} ${kernel}${normal}"
+userText="${textColor}User:${normal} ${user}@${hostname}${normal}"
+pwdText="${textColor}Home:${normal} ${pwd}${normal}"
+distroText="${textColor}Mac OS X:${normal} ${distro}${normal}"
 uptimeText="${textColor}Uptime:${normal} ${uptime}${normal}"
 ipText="${textColor}IP Address:${normal} ${ip}${normal}"
-shellText="${textColor}Shell:${normal} ${shell}${normal}"
-terminalText="${textColor}Terminal:${normal} ${terminal}${normal}"
-packagehandlerText="${textColor}Packages:${normal} ${packagehandler}${normal}"
 cpuText="${textColor}CPU:${normal} ${cpu}${normal}"
 memoryText="${textColor}Memory:${normal} ${ram}${normal}"
 diskText="${textColor}Disk:${normal} ${disk}${normal}"
@@ -114,18 +97,18 @@ else
 # as when run.
   echo -e "
 ${GREEN#  }                 ###                  $userText
-${GREEN#  }               ####                   $hostnameText
+${GREEN#  }               ####                   $pwdText
 ${GREEN#  }               ###                    $distroText
-${GREEN#  }       #######    #######             $kernelText
-${YELLOW# }     ######################           $uptimeText
-${YELLOW# }    #####################             $shellText
-${RED#    }    ####################              $terminalText
-${RED#    }    ####################              $packagehandlerText
-${RED#    }    #####################             $cpuText
-${PURPLE# }     ######################           $memoryText
-${PURPLE# }      ####################            $diskText
-${BLUE#   }        ################              $batteryText
-${BLUE#   }         ####     #####               $ipText
+${GREEN#  }       #######    #######             $cpuText
+${YELLOW# }     ######################           $memoryText
+${YELLOW# }    #####################             $diskText
+${RED#    }    ####################              $batteryText
+${RED#    }    ####################              $uptimeText
+${RED#    }    #####################             $ipText
+${PURPLE# }     ######################           
+${PURPLE# }      ####################            
+${BLUE#   }        ################              
+${BLUE#   }         ####     #####               
 ${normal}
 "
 fi

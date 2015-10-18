@@ -26,3 +26,10 @@ for plugin in ~/.zplugins/*; do
   shy load $plugin
 done
 
+# ----------------------------------------------------------------------------
+# ZSH SYNTAX HIGHLIGHTING
+# https://github.com/zsh-users/zsh-syntax-highlighting.git
+# ----------------------------------------------------------------------------
+
+# Has to be the LAST entry in .zshrc!!!
+source ~/.syntax/zsh-syntax-highlighting.zsh
