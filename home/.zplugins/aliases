@@ -1,0 +1,12 @@
+# ----------------------------------------------------------------------------
+# Shell aliases
+# Collection of usefull snippets found on the web
+# ----------------------------------------------------------------------------
+
+### git ###
+alias groot='cd $(git rev-parse --show-toplevel)' 	# jump to git's root directory
+
+
+
+ 
+

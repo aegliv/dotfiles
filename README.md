@@ -100,3 +100,14 @@ Follow the instructions 1:1 as User with Admin privileges
     ```
 
 5. Restart Terminal
+
+
+# Inspiration
+- [dashkb](https://github.com/dashkb/.files)
+- [nbari](https://github.com/nbari/dotfiles)
+- [dustri](https://dustri.org/b/my-zsh-configuration.html)
+
+## Interesting tools
+- [osx-trash](https://github.com/sindresorhus/osx-trash)
+- [fasd](https://github.com/clvv/fasd)
+- [aliases](http://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/)

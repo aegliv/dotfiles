@@ -11,6 +11,14 @@ typeset -U fpath
 eval "$(rbenv init -)"
 
 
+# Resolve the real location of our dotfiles
+# This is a dirty workaround to eliminate the necessarity
+# of having to symlink everything referenced by our dotfiles
+# in other words: keeps home clean
+CASTLE=$(perl -MCwd -le 'print Cwd::abs_path(shift)' ~/.zshrc)  # http://stackoverflow.com/a/42918
+CASTLE="$(dirname "$(dirname "$CASTLE")")"			# emulates a cd ..
+
+
 # ----------------------------------------------------------------------------
 # SHY
 # Simple 'plugin' manager
@@ -18,7 +26,7 @@ eval "$(rbenv init -)"
 # ----------------------------------------------------------------------------
 
 # Bootstrap shy
-path+=(~/.shy)
+path+=($CASTLE/shy)
 
 eval "$(shy init)"
 
@@ -32,4 +40,4 @@ done
 # ----------------------------------------------------------------------------
 
 # Has to be the LAST entry in .zshrc!!!
-source ~/.syntax/zsh-syntax-highlighting.zsh
+source $CASTLE/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
