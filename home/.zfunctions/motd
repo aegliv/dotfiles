@@ -62,6 +62,12 @@ cpu=$(echo "$cpu" | awk '$1=$1' | sed 's/([A-Z]\{1,2\})//g')
 ram="$(( $(sysctl -n hw.memsize) / 1024 ** 3  )) GB"
 disk=$(df | head -2 | tail -1 | awk '{print $5}')
 
+#Docker
+if [ -x /usr/local/bin/docker ]; then
+  dockerCli=$(docker --version | sed 's/.*version \([^,]*\), .*/\1/')
+  dockerMachine=$(docker-machine --version | sed 's/.*version \([^,]*\), .*/\1/')
+  dockerCompose=$(docker-compose --version | sed 's/.*version \([^,]*\), .*/\1/')
+fi
 
 # Set up colors if:
 # * stdout is a tty
@@ -88,6 +94,7 @@ cpuText="${textColor}CPU:${normal} ${cpu}${normal}"
 memoryText="${textColor}Memory:${normal} ${ram}${normal}"
 diskText="${textColor}Disk:${normal} ${disk}${normal}"
 batteryText="${textColor}Battery:${normal} ${battery}${normal}"
+dockerText="${textColor}Docker:${normal} ${dockerCli}${normal} ${textColor}|${normal} ${dockerCompose}${normal} ${textColor}|${normal} ${dockerMachine}${normal}"
 
 if [ -a "${HOME}/.config/archey-logo" ]
   then
@@ -105,7 +112,7 @@ ${YELLOW# }    #####################             $diskText
 ${RED#    }    ####################              $batteryText
 ${RED#    }    ####################              $uptimeText
 ${RED#    }    #####################             $ipText
-${PURPLE# }     ######################           
+${PURPLE# }     ######################           $dockerText
 ${PURPLE# }      ####################            
 ${BLUE#   }        ################              
 ${BLUE#   }         ####     #####               
