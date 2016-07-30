@@ -31,7 +31,7 @@ Follow the instructions 1:1 as User with Admin privileges
     brew tap caskroom/fonts 
     ```
 
-6. Install Ruby (dependency for 6.)
+6. Install Ruby (dependency for 7.)
     ```bash
     brew install rbenv ruby-build
     # search for latest version and install it
