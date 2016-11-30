@@ -46,6 +46,21 @@ do
   esac
 done
 
+# Set up colors if:
+# * stdout is a tty
+# * the user hasn't turned it off
+# * or if we're forcing color
+if [[ ( -t 1  && "${opt_nocolor}" = f) || "${opt_force_color}" = t ]]
+then
+  RED=$(tput       setaf 1 2>/dev/null)
+  GREEN=$(tput     setaf 2 2>/dev/null)
+  YELLOW=$(tput    setaf 3 2>/dev/null)
+  BLUE=$(tput      setaf 4 2>/dev/null)
+  PURPLE=$(tput    setaf 5 2>/dev/null)
+  textColor=$(tput setaf 6 2>/dev/null)
+  normal=$(tput    sgr0 2>/dev/null)
+fi
+
 # System Variables
 user=$(whoami)
 hostname=$(hostname | sed 's/.local//g')
@@ -67,23 +82,10 @@ if [ -x /usr/local/bin/docker ]; then
   dockerCli=$(docker --version | sed 's/.*version \([^,]*\), .*/\1/')
   dockerMachine=$(docker-machine --version | sed 's/.*version \([^,]*\), .*/\1/')
   dockerCompose=$(docker-compose --version | sed 's/.*version \([^,]*\), .*/\1/')
+  dockerText="${textColor}Docker:${normal} ${dockerCli}${normal} ${textColor}|${normal} ${dockerCompose}${normal} ${textColor}|${normal} ${dockerMachine}${normal}"
+else
+  dockerText="${textColor}Docker: ${RED}not installed${normal}"
 fi
-
-# Set up colors if:
-# * stdout is a tty
-# * the user hasn't turned it off
-# * or if we're forcing color
-if [[ ( -t 1  && "${opt_nocolor}" = f) || "${opt_force_color}" = t ]]
-then
-  RED=$(tput       setaf 1 2>/dev/null)
-  GREEN=$(tput     setaf 2 2>/dev/null)
-  YELLOW=$(tput    setaf 3 2>/dev/null)
-  BLUE=$(tput      setaf 4 2>/dev/null)
-  PURPLE=$(tput    setaf 5 2>/dev/null)
-  textColor=$(tput setaf 6 2>/dev/null)
-  normal=$(tput    sgr0 2>/dev/null)
-fi
-
 
 userText="${textColor}User:${normal} ${user}@${hostname}${normal}"
 pwdText="${textColor}Home:${normal} ${pwd}${normal}"
@@ -94,7 +96,6 @@ cpuText="${textColor}CPU:${normal} ${cpu}${normal}"
 memoryText="${textColor}Memory:${normal} ${ram}${normal}"
 diskText="${textColor}Disk:${normal} ${disk}${normal}"
 batteryText="${textColor}Battery:${normal} ${battery}${normal}"
-dockerText="${textColor}Docker:${normal} ${dockerCli}${normal} ${textColor}|${normal} ${dockerCompose}${normal} ${textColor}|${normal} ${dockerMachine}${normal}"
 
 if [ -a "${HOME}/.config/archey-logo" ]
   then

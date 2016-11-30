@@ -101,6 +101,11 @@ Follow the instructions 1:1 as User with Admin privileges
 
 5. Restart Terminal
 
+# Update
+Update submodules with
+    ```bash
+    git submodule update --remote --merge
+    ```
 
 # Inspiration
 - [dashkb](https://github.com/dashkb/.files)
