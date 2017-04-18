@@ -46,6 +46,11 @@ Follow the instructions 1:1 as User with Admin privileges
     gem install homesick
     ```
     
+8. Install [7z](http://p7zip.sourceforge.net) to manage encrypted zip archives
+    ```bash
+    brew install p7zip
+    ```
+    
 ## Custom Terminal
 1. Install the Terminal emulator [iTerm2](https://www.iterm2.com/)
 
