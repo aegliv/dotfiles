@@ -6,6 +6,9 @@
 ### git ###
 alias groot='cd $(git rev-parse --show-toplevel)' 	# jump to git's root directory
 
+### docker ###
+alias drmc='docker rm $(docker ps -a -q)'               # removes all containers
+alias drmv='docker volume ls -q -f dangling=true'       # removes all dangling volumes
 
 
  
