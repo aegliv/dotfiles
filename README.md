@@ -65,6 +65,9 @@ Follow the instructions 1:1 as User with Admin privileges
     ```
 
 3. Open iTerm2 and enable your custom font in ``iTerm -> Preferences -> Profiles -> Text``
+
+4. Modify [Keyboard Shortcuts](https://stackoverflow.com/a/10485061)
+
     
 ## Custom Shell
 1. Install [Zsh Shell](http://www.zsh.org)
